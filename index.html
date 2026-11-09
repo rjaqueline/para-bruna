@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Para a Bruna 💍">
+<meta property="og:description" content="Um cartãozinho pra você, com carinho da Jaque">
+<style>*{box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Para a Bruna</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Fraunces:opsz,wght@9..144,300;9..144,500&family=DM+Mono:wght@400&display=swap">
+<style>
+/* Layout: one centered letterpress card, opened from an envelope; night ink, rose paper, gold foil. Deliberately single-theme. */
+:root{
+  --night:#1c2340; --night-2:#262f55; --paper:#fbeef0; --rose:#e9b8c3; --gold:#c9a24a; --ink:#2a2140; --muted:#7a6a86;
+  --script:"Pinyon Script","Snell Roundhand",cursive;
+  --serif:"Fraunces",Georgia,serif;
+  --mono:"DM Mono",ui-monospace,monospace;
+  color-scheme:dark;
+}
+html,body{min-height:100%}
+body{background:radial-gradient(120% 80% at 50% 0%,var(--night-2),var(--night));color:var(--paper);font-family:var(--serif);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px 60px;overflow-x:hidden}
+#petals{position:fixed;inset:0;pointer-events:none;z-index:5}
+.stage{max-width:520px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:28px}
+
+/* envelope */
+.env{position:relative;width:100%;max-width:440px;aspect-ratio:3/2;cursor:pointer;border:0;padding:0;background:none;perspective:900px}
+.env:focus-visible{outline:2px solid var(--gold);outline-offset:6px;border-radius:6px}
+.env-body{position:absolute;inset:0;background:var(--rose);border-radius:6px;box-shadow:0 20px 50px #0007;overflow:hidden}
+.env-body::before,.env-body::after{content:"";position:absolute;bottom:0;width:60%;height:100%;background:#e2a9b6}
+.env-body::before{left:0;clip-path:polygon(0 0,0 100%,100% 100%)}
+.env-body::after{right:0;clip-path:polygon(100% 0,0 100%,100% 100%)}
+.flap{position:absolute;inset:0 0 auto;height:58%;background:#d99aa9;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .7s ease;z-index:2;border-radius:6px 6px 0 0}
+.seal{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e3c378,var(--gold) 60%,#9c7a2c);z-index:3;display:grid;place-items:center;font-family:var(--script);font-size:34px;color:var(--night);box-shadow:0 3px 8px #0005;transition:opacity .4s}
+.to{position:absolute;bottom:14%;left:0;right:0;text-align:center;z-index:1;font-family:var(--script);font-size:clamp(28px,7vw,40px);color:var(--ink)}
+.env.open .flap{transform:rotateX(180deg)}
+.env.open .seal{opacity:0}
+.hint{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);opacity:.8}
+
+/* card */
+.card{width:100%;background:var(--paper);color:var(--ink);border-radius:4px;padding:40px 28px 32px;box-shadow:0 30px 70px #0008;position:relative;
+  outline:1px solid var(--gold);outline-offset:-12px;text-align:center;display:flex;flex-direction:column;gap:18px;animation:rise .9s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.name{font-family:var(--script);font-size:clamp(64px,18vw,96px);line-height:.9;color:var(--night);margin:0;
+  background:linear-gradient(100deg,var(--night) 30%,var(--gold) 50%,var(--night) 70%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:foil 4s ease-in-out infinite}
+@keyframes foil{0%,100%{background-position:100% 0}50%{background-position:0 0}}
+.lead{font-size:20px;font-weight:300;margin:0;text-wrap:balance}
+.msg{font-size:16px;line-height:1.65;font-weight:300;max-width:38ch;margin:0 auto;text-wrap:pretty}
+.rule{width:60px;height:1px;background:var(--gold);margin:4px auto;border:0}
+h2{font-family:var(--mono);font-weight:400;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0}
+.terms{list-style:none;padding:0;margin:0;text-align:left;display:flex;flex-direction:column;gap:10px;max-width:40ch;margin-inline:auto}
+.terms li{display:grid;grid-template-columns:auto 1fr;gap:10px;font-size:15px;line-height:1.45}
+.terms span{font-family:var(--mono);font-size:12px;color:var(--gold);padding-top:3px}
+.btns{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:6px}
+button.b{font-family:var(--mono);font-size:13px;letter-spacing:.06em;padding:12px 18px;border-radius:999px;cursor:pointer;border:1px solid var(--night);background:var(--night);color:var(--paper);transition:transform .15s}
+button.b.alt{background:transparent;color:var(--night)}
+button.b:hover{transform:translateY(-2px)}
+button.b:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.sign{font-family:var(--script);font-size:34px;color:var(--night);margin:6px 0 0}
+.toast{font-family:var(--serif);font-style:italic;min-height:1.5em;color:var(--muted);font-size:15px;margin:0}
+.music{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:6;width:48px;height:48px;border-radius:50%;border:1px solid var(--gold);background:var(--night);color:var(--paper);font-size:20px;cursor:pointer;box-shadow:0 6px 18px #0006}
+.music:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<canvas id="petals"></canvas>
+<button class="music" id="music" aria-label="Tocar música" hidden>🔇</button>
+<main class="stage">
+  <button class="env" id="env" aria-label="Abrir o envelope da Bruna">
+    <div class="env-body"></div>
+    <div class="flap"></div>
+    <div class="seal">B</div>
+    <div class="to">para Bruna</div>
+  </button>
+  <p class="hint" id="hint">toque para abrir</p>
+
+  <article class="card" id="card" hidden>
+    <p class="eyebrow">07 · 11 · 2026 &nbsp;·&nbsp; Manaus</p>
+    <h1 class="name">Bruna</h1>
+    <p class="lead">Agora é oficial: o amor ganhou carimbo, aliança e festa.</p>
+    <hr class="rule">
+    <p class="msg">Que essa casa nova seja cheia de risada alta, café passado na hora e domingos sem pressa. Que vocês briguem pouco, façam as pazes rápido e nunca percam o costume de se olhar como se fosse a primeira vez. Você merece um amor do tamanho do seu coração, e olha, isso é bastante coisa. 💛</p>
+    <hr class="rule">
+    <h2>Cláusulas do contrato (letra miúda)</h2>
+    <ol class="terms">
+      <li><span>§1</span>A última fatia de pizza é patrimônio do casal. Comer escondido configura quebra de contrato.</li>
+      <li><span>§2</span>O controle remoto passa a ter guarda compartilhada.</li>
+      <li><span>§3</span>Ronco deve ser denunciado com amor, de preferência no dia seguinte.</li>
+      <li><span>§4</span>"Tô quase pronta" vale, oficialmente, por mais 40 minutos.</li>
+      <li><span>§5</span>Felizes para sempre, com renovação automática. Sem multa, só abraço.</li>
+    </ol>
+    <div class="btns">
+      <button class="b" id="rice">Jogar arroz 🍚</button>
+      <button class="b alt" id="cheers">Fazer um brinde 🥂</button>
+    </div>
+    <p class="toast" id="toast" aria-live="polite"></p>
+    <p class="sign">com carinho, Jaque</p>
+  </article>
+</main>
+
+<script>
+const env=document.getElementById('env'),card=document.getElementById('card'),hint=document.getElementById('hint');
+const cv=document.getElementById('petals'),ctx=cv.getContext('2d');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let W,H,parts=[];
+function size(){W=cv.width=innerWidth*devicePixelRatio;H=cv.height=innerHeight*devicePixelRatio;cv.style.width=innerWidth+'px';cv.style.height=innerHeight+'px'}
+size();addEventListener('resize',size);
+const colors=['#e9b8c3','#f6d5dc','#c9a24a','#ffffff','#d99aa9'];
+function burst(n,kind){
+  if(reduce)return;
+  for(let i=0;i<n;i++){
+    parts.push({x:Math.random()*W,y:-20*devicePixelRatio-Math.random()*H*.4,vx:(Math.random()-.5)*1.2,vy:1+Math.random()*2.2,
+      r:(kind==='rice'?2.2:5+Math.random()*5)*devicePixelRatio,rot:Math.random()*6,vr:(Math.random()-.5)*.08,
+      c:kind==='rice'?'#fffaf0':colors[i%colors.length],kind,sway:Math.random()*6});
+  }
+}
+function tick(){
+  ctx.clearRect(0,0,W,H);
+  parts=parts.filter(p=>p.y<H+40);
+  for(const p of parts){
+    p.sway+=.03;p.x+=p.vx+Math.sin(p.sway)*.6;p.y+=p.vy*devicePixelRatio;p.rot+=p.vr;
+    ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=p.c;ctx.beginPath();
+    if(p.kind==='rice')ctx.ellipse(0,0,p.r*2,p.r,0,0,7);else ctx.ellipse(0,0,p.r,p.r*.55,0,0,7);
+    ctx.fill();ctx.restore();
+  }
+  requestAnimationFrame(tick);
+}
+tick();
+// gentle ambient petals
+setInterval(()=>{if(parts.length<40)burst(2,'petal')},900);
+
+// ---- música: tenta tocar "musica.mp3" (mesma pasta); se não existir, toca uma caixinha de música ----
+const musicBtn=document.getElementById('music');
+let playing=false,mp3=null,ac=null,boxTimer=null,master=null;
+const melody=[ // caixinha de música original, valsa em Dó
+  [72,1],[76,1],[79,1],[84,2],[83,1],[79,2],[76,1],[77,1],[81,1],[84,2],[83,1],[81,3],
+  [79,1],[76,1],[72,1],[74,2],[76,1],[77,2],[74,1],[72,3],[0,3]
+];
+function note(m,t,d){
+  const f=440*Math.pow(2,(m-69)/12);
+  [1,2.01].forEach((h,i)=>{const o=ac.createOscillator(),g=ac.createGain();
+    o.type='sine';o.frequency.value=f*h;g.gain.setValueAtTime(0,t);
+    g.gain.linearRampToValueAtTime(i?0.04:0.16,t+0.01);g.gain.exponentialRampToValueAtTime(0.0001,t+d*1.6);
+    o.connect(g).connect(master);o.start(t);o.stop(t+d*1.7);});
+}
+function playBox(){
+  try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();}catch(e){return}
+  ac.resume();master=ac.createGain();master.gain.value=0.7;master.connect(ac.destination);
+  const beat=0.32;
+  const loop=()=>{let t=ac.currentTime+0.05;for(const [m,b] of melody){if(m)note(m,t,b*beat);t+=b*beat}
+    boxTimer=setTimeout(loop,(t-ac.currentTime)*1000-60)};
+  loop();
+}
+function stopBox(){clearTimeout(boxTimer);if(master){master.disconnect();master=null}}
+function startMusic(){
+  try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();ac.resume()}catch(e){} // desbloqueia o áudio no clique
+  if(window.noMp3){playBox()}
+  else{if(!mp3){mp3=new Audio('musica.mp3');mp3.loop=true}
+    mp3.play().catch(()=>{mp3=null;window.noMp3=true;if(playing)playBox()});}
+  playing=true;musicBtn.textContent='🎵';musicBtn.setAttribute('aria-label','Pausar música');
+}
+function stopMusic(){if(mp3)mp3.pause();stopBox();playing=false;musicBtn.textContent='🔇';musicBtn.setAttribute('aria-label','Tocar música')}
+musicBtn.onclick=()=>playing?stopMusic():startMusic();
+
+env.addEventListener('click',()=>{
+  if(env.classList.contains('open'))return;
+  env.classList.add('open');
+  musicBtn.hidden=false;startMusic();
+  burst(90,'petal');
+  setTimeout(()=>{env.hidden=true;hint.hidden=true;card.hidden=false;window.scrollTo({top:0})},750);
+});
+const toast=document.getElementById('toast');
+const brindes=[
+  'Ao amor, à paciência e ao Wi-Fi que nunca cai. 🥂',
+  'Que o único boleto da vida de vocês seja de viagem! ✈️',
+  'Às brigas curtas e aos abraços compridos! 💛',
+  'Que a sogra seja gente boa. (Se já é, brinde dobrado!) 😄',
+  'Ao "sim" mais bonito do ano! 🥂'
+];
+let bi=0;
+document.getElementById('cheers').onclick=()=>{toast.textContent=brindes[bi++%brindes.length];burst(30,'petal')};
+document.getElementById('rice').onclick=()=>{burst(160,'rice');toast.textContent='Felicidades, Bruna! 🍚✨'};
+</script>
+</body>
+</html>
